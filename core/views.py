@@ -16,7 +16,7 @@ from core.serializers import VendedorSerializer,GeolocalizacaoSerializer,Fazenda
 
 
 class VendedorViewSet(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    #authentication_classes = [SessionAuthentication, BasicAuthentication]
     #permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
     #permission_classes = [permissions.AllowAny]
 
@@ -26,7 +26,7 @@ class VendedorViewSet(viewsets.ModelViewSet):
 
 
 class GeolocalizacaoViewSet(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    #authentication_classes = [SessionAuthentication, BasicAuthentication]
     #permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
     #permission_classes = [permissions.AllowAny]
 
@@ -36,7 +36,7 @@ class GeolocalizacaoViewSet(viewsets.ModelViewSet):
 
 
 class FazendaViewSet(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    #authentication_classes = [SessionAuthentication, BasicAuthentication]
     #permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
     #permission_classes = [permissions.AllowAny]
 
@@ -47,7 +47,7 @@ class FazendaViewSet(viewsets.ModelViewSet):
 
 
 class FazendaVendedorViewSet(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    #authentication_classes = [SessionAuthentication, BasicAuthentication]
     #permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
     #permission_classes = [permissions.AllowAny]
 
@@ -58,7 +58,7 @@ class FazendaVendedorViewSet(viewsets.ModelViewSet):
 
 
 class ProdutoViewSet(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    #authentication_classes = [SessionAuthentication, BasicAuthentication]
     #permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
     #permission_classes = [permissions.AllowAny]
 
@@ -69,7 +69,7 @@ class ProdutoViewSet(viewsets.ModelViewSet):
 
 
 class ProdutoVendedorViewSet(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    #authentication_classes = [SessionAuthentication, BasicAuthentication]
     #permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
     #permission_classes = [permissions.AllowAny]
 
@@ -80,7 +80,7 @@ class ProdutoVendedorViewSet(viewsets.ModelViewSet):
 
 
 class FavoritoVendedorViewSet(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    #authentication_classes = [SessionAuthentication, BasicAuthentication]
     #permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
     #permission_classes = [permissions.AllowAny]
 
@@ -91,7 +91,7 @@ class FavoritoVendedorViewSet(viewsets.ModelViewSet):
 
 
 class FavoritoProdutoViewSet(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    #authentication_classes = [SessionAuthentication, BasicAuthentication]
     #permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
     #permission_classes = [permissions.AllowAny]
 
@@ -101,7 +101,7 @@ class FavoritoProdutoViewSet(viewsets.ModelViewSet):
 
 
 class FeiraViewSet(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    #authentication_classes = [SessionAuthentication, BasicAuthentication]
     #permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
     #permission_classes = [permissions.AllowAny]
 
