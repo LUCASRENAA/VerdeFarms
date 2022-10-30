@@ -30,8 +30,8 @@ SECRET_KEY = ''.join(secrets.choice(chars) for i in range(length))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
+#colocando para a aplicação se comunicar com o emulador
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
