@@ -21,11 +21,14 @@ from rest_framework import filters
 
 from rest_framework import routers, serializers, viewsets
 # Serializers define the API representation.
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = User
-        fields = ['id','url', 'username', 'email', 'is_staff','password']
+#Serializer to Get User Details using Django Token Authentication
+from core.views import RegisterUserAPIView
 
+
+class UserSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = User
+    fields = ["id", "first_name", "last_name", "username",'email']
 # ViewSets define the view behavior.
 class UserViewSet(viewsets.ModelViewSet):
     filter_backends = [filters.SearchFilter]
@@ -52,5 +55,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('rest_framework.urls')),
     path('api/', include(router.urls)),
+    path('api/register', RegisterUserAPIView.as_view()),
 
 ]
