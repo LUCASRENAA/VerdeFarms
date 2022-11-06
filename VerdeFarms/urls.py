@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.auth.models import User
 from django.urls import path, include
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters
 
 from rest_framework import routers, serializers, viewsets
 # Serializers define the API representation.
@@ -26,6 +28,8 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 # ViewSets define the view behavior.
 class UserViewSet(viewsets.ModelViewSet):
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['username', 'email']
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
