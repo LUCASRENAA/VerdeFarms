@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 
 
 class Vendedor(models.Model):
-    usuario = models.CharField(max_length=50)
-    senha = models.CharField(max_length=50)
+    usuario = models.ForeignKey(User, models.CASCADE)
+
     apelido = models.CharField(max_length=50)
     cpf = models.CharField(max_length=50)
     nome = models.CharField(max_length=50)
@@ -15,8 +15,7 @@ class Vendedor(models.Model):
 class Geolocalizacao(models.Model):
     latitude = models.DecimalField(max_digits=10, decimal_places=5, default=0)
     longitude = models.DecimalField(max_digits=10, decimal_places=5, default=0)
-    usuario = models.CharField(max_length=50)
-    senha = models.CharField(max_length=50)
+    usuario = models.ForeignKey(User, models.CASCADE)
 
 
 class Fazenda(models.Model):
@@ -42,14 +41,13 @@ class ProdutoVendedor(models.Model):
 
 
 class FavoritoVendedor(models.Model):
-    usuario = models.CharField(max_length=50)
-    senha = models.CharField(max_length=50)
+    usuario = models.ForeignKey(User, models.CASCADE)
+
     vendedor = models.ForeignKey(Vendedor, models.CASCADE)
 
 
 class FavoritoProduto(models.Model):
-    usuario = models.CharField(max_length=50)
-    senha = models.CharField(max_length=50)
+    usuario = models.ForeignKey(User, models.CASCADE)
     produto = models.ForeignKey(Produto, models.CASCADE)
 
 
