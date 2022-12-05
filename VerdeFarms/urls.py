@@ -32,9 +32,11 @@ class UserSerializer(serializers.ModelSerializer):
 # ViewSets define the view behavior.
 class UserViewSet(viewsets.ModelViewSet):
     filter_backends = [filters.SearchFilter]
-    search_fields = ['username', 'email']
+    search_fields = ['email']
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    #talvez realmente não precise botar autenticação para ver isso, pois, um usuário tem que ver os dados dos outros usuários
+    #permission_classes = (permissions.IsAuthenticated, )
 
 
 from core import views
@@ -64,4 +66,6 @@ urlpatterns = [
     path('api/register', RegisterUserAPIView.as_view()),
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path("front/", include("front.urls")),
+
 ]
