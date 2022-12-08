@@ -35,7 +35,9 @@ class UserViewSet(viewsets.ModelViewSet):
     search_fields = ['email']
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    #talvez realmente não precise botar autenticação para ver isso, pois, um usuário tem que ver os dados dos outros usuários
+
+    http_method_names = ['get', 'post', 'put', 'path']
+    #adicionar autenticação depois
     #permission_classes = (permissions.IsAuthenticated, )
 
 
