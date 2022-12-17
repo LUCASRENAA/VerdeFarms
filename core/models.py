@@ -38,6 +38,7 @@ class ProdutoVendedor(models.Model):
     vendedor = models.ForeignKey(Vendedor, models.CASCADE)
     imagem = models.ImageField(upload_to='produtos/', blank=True)
     descricao = models.CharField(max_length=50)
+    ter_ou_nao = models.BooleanField()
 
 
 class FavoritoVendedor(models.Model):
@@ -52,6 +53,7 @@ class FavoritoProduto(models.Model):
 
 
 class Feira(models.Model):
+    nome = models.CharField(max_length=50)
     latitude = models.DecimalField(max_digits=10, decimal_places=5, default=0)
     longitude = models.DecimalField(max_digits=10, decimal_places=5, default=0)
     data_evento = models.DateTimeField(auto_now=True)
