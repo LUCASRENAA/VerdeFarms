@@ -21,17 +21,24 @@ from rest_framework import filters
 
 from rest_framework import routers, serializers, viewsets
 # Serializers define the API representation.
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = User
-        fields = ['id','url', 'username', 'email', 'is_staff','password']
+#Serializer to Get User Details using Django Token Authentication
+from core.views import RegisterUserAPIView
 
+
+class UserSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = User
+    fields = ["id", "first_name", "last_name", "username",'email']
 # ViewSets define the view behavior.
 class UserViewSet(viewsets.ModelViewSet):
     filter_backends = [filters.SearchFilter]
-    search_fields = ['username', 'email']
+    search_fields = ['email']
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+    http_method_names = ['get', 'post', 'put', 'path']
+    #adicionar autenticação depois
+    #permission_classes = (permissions.IsAuthenticated, )
 
 
 from core import views
@@ -48,9 +55,19 @@ router.register('feira', views.FeiraViewSet)
 router.register(r'users', UserViewSet)
 
 
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('rest_framework.urls')),
     path('api/', include(router.urls)),
+    path('api/register', RegisterUserAPIView.as_view()),
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path("front/", include("front.urls")),
 
 ]

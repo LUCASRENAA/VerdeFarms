@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    <meta charset="utf-8">
+    <title>My secure app</title>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+      <script>
+    var teste = '';
+    $.ajax({
+   url: 'http://127.0.0.1:8000/api/localizacao/',
+   type: 'GET',
+   contentType: 'application/json',
+   headers: {
+       'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjcxMTQ4NTgwLCJqdGkiOiJiMzgxYmI3MjkxYmI0ODczODkyMmU0ZTM4Y2 U4ZWM0ZCIsInVzZXJfaWQiOjF9.ZDMOZtlETXNiG07doj30AJ6FbYZk2surBL_fUKBCsD4'
+
+   },
+        success: function (result) {
+    teste = result;
+       latitude = teste[0]["latitude"];
+       longitude  = teste[0]["longitude"];
+document.getElementById("latitude").value = latitude;
+document.getElementById("longitude").value = longitude;
+primeiroBloco(result);
+
+},
+   error: function (error) {
+
+   }
+});
+
+
+
+</script>
+
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+		}
+		.leaflet-container {
+			height: 400px;
+			width: 600px;
+			max-width: 100%;
+			max-height: 100%;
+		}
+	</style>
+  </head>
+  <body>
+    <p>Now this is some sweet HTML!</p>
+  <input id="latitude" hidden>
+  <input id="longitude" hidden>
+  </body>
+</html>
+
+<div id="map" style="width: 600px; height: 400px;"></div>
+<script>
+
+function primeiroBloco(result) {
+    latitude = document.getElementById("latitude").value;
+    longitude = document.getElementById("longitude").value;
+    const map = L.map('map').setView([latitude, longitude], 13);
+
+    const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    const marker = L.marker([latitude, longitude]).addTo(map)
+        .bindPopup('<b>Hello world!</b><br />I am a popup.').openPopup();
+
+
+    const popup = L.popup()
+        .setLatLng([latitude, longitude])
+        .setContent('You')
+        .openOn(map);
+
+    function onMapClick(e) {
+        popup
+            .setLatLng(e.latlng)
+            .setContent(`You clicked the map at ${e.latlng.toString()}`)
+            .openOn(map);
+    }
+
+for (var i = 0; i < result.length; i++){
+  var obj = result[i];
+
+  alert(result[i]["latitude"]);
+  alert(result[i]["longitude"]);
+    var marker2 = L.marker([result[i]["latitude"],result[i]["longitude"]]).addTo(map);
+
+}
+//var marker3 = L.marker([-16.5, -42]).addTo(map);
+	map.on('click', onMapClick);
+
+}
+</script>
+
+

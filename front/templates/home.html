@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    <meta charset="utf-8">
+    <title>My secure app</title>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+		}
+
+	</style>
+
+
+      <style>
+          body, html{
+  height: 100%;
+}
+
+
+         #map {
+  height: 100%;
+  width: 100%;}
+
+      </style>
+  </head>
+  <body>
+
+  </body>
+</html>
+
+<div id="map"></div>
+<script>
+var watchID = navigator.geolocation.watchPosition(function(position) {
+  primeiroBloco(position.coords.latitude, position.coords.longitude);
+}
+);
+function primeiroBloco(latitude,longitude) {
+
+
+    const map = L.map('map').setView([latitude, longitude], 13);
+
+    const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+
+
+
+
+    var feiraIcon = L.icon({
+    iconUrl: 'https://cdn-icons-png.flaticon.com/512/72/72780.png',
+
+    iconSize:     [20, 20], // size of the icon
+ });
+
+
+
+        var perfilIcon = L.icon({
+    iconUrl: 'data:image/jpeg;base64,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',
+
+    iconSize:     [20, 20], // size of the icon
+ });
+
+    const marker = L.marker([latitude, longitude],  {icon: perfilIcon}).addTo(map)
+
+
+    const popup = L.popup()
+        .setLatLng([latitude, longitude])
+        .setContent('Você está aqui')
+        .openOn(map);
+
+    function onMapClick(e) {
+        popup
+            .setLatLng(e.latlng)
+            .setContent(`Você clicou aqui:  ${e.latlng.toString()}`)
+            .openOn(map);
+    }
+
+    {%  for geo in geos %}
+    var marker2 = L.marker([{{  geo.latitude }},{{  geo.longitude  }}], {icon: perfilIcon}).addTo(map).bindPopup('{{  geo.usuario.username }}', {closeOnClick: false, autoClose: false})
+    .openPopup();
+
+    {%  endfor %}
+
+   {%  for feira in feiras %}
+    var marker2 = L.marker([{{  feira.latitude }},{{  feira.longitude  }}], {icon: feiraIcon}).addTo(map).bindPopup('{{  feira.nome }}', {closeOnClick: false, autoClose: false}).openPopup();
+
+    {%  endfor %}
+//var marker3 = L.marker([-16.5, -42]).addTo(map);
+	map.on('click', onMapClick);
+
+}
+</script>
+
+
