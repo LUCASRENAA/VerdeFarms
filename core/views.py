@@ -20,6 +20,9 @@ class VendedorViewSet(viewsets.ModelViewSet):
     #permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
     #permission_classes = [permissions.AllowAny]
     permission_classes = (permissions.IsAuthenticated, )
+    def perform_create(self, serializer):
+        request = serializer.context["request"]
+        serializer.save(usuario=request.user)
 
     queryset = Vendedor.objects.all()
     serializer_class = VendedorSerializer
