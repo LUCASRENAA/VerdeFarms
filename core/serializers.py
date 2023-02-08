@@ -43,6 +43,8 @@ class ProdutoVendedorSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProdutoVendedor
         fields = '__all__'
+        extra_kwargs = {'vendedor': {'required': False}}
+
 
 
 class FavoritoVendedorSerializer(serializers.ModelSerializer):

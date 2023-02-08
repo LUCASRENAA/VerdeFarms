@@ -88,6 +88,13 @@ class ProdutoVendedorViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated, )
 
     queryset = ProdutoVendedor.objects.all()
+
+    def perform_create(self, serializer):
+        request = serializer.context["request"]
+        print(request)
+        print( Vendedor.objects.get(usuario=request.user))
+        serializer.save(vendedor = Vendedor.objects.get(usuario=request.user))
+
     serializer_class = ProdutoVendedorSerializer
     http_method_names = ['get', 'post', 'put', 'path','delete']
 
