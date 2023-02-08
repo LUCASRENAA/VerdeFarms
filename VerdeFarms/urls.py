@@ -32,7 +32,7 @@ class UserSerializer(serializers.ModelSerializer):
 # ViewSets define the view behavior.
 class UserViewSet(viewsets.ModelViewSet):
     filter_backends = [filters.SearchFilter]
-    search_fields = ['email']
+    search_fields = ['username']
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
